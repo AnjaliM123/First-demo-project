@@ -1,7 +1,7 @@
 .navbar {
     display:flex;
     flex-direction:row;
-    background-color:#5cb85c;
+    background-color:honeydew;
     justify-content: space-between;
 }
 
@@ -13,4 +13,17 @@ h1 {
 
   p {
     margin: 0 0 10px;
+  }
+  .nav-link {
+      color:green;
+  }
+
+  .navlink-container {
+      display:flex;
+      flex-direction: row;
+  }
+
+  .logo {
+      width:130px;
+      height:70px;
   }
