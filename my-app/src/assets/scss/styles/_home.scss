@@ -1,0 +1,43 @@
+.welcome-message {
+    font-family:"Roboto";
+    // color:green;
+    font-family: "Roboto";
+    font-size: 30px;
+    font-weight:700;
+    
+}
+.welcome-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.description {
+    // color:green;
+    font-family: "Roboto";
+    font-size: 19px;
+    margin-top: 10px;
+}
+
+
+@media (min-width:320px) {
+    .welcome-message {
+        font-size: 19px;;
+    }
+    .description {
+        font-size:15px;
+    }
+}
+
+@media (min-width:768px) {
+    .welcome-message {
+        font-size: 30px;;
+    }
+    .description {
+        font-size:17px;
+       margin: auto;
+       text-align:center;
+       margin-top: 17px;
+    }
+}
