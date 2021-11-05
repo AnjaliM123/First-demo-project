@@ -1,32 +1,18 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { Button, Label, Input } from "reactstrap";
-import { required, email, maxLength15, minLength6 } from "../constants"
+import { Button, Form } from "reactstrap";
+import { required, emailValidate, maxLength15, minLength6 } from "../constants"
+import { renderTextField } from "../common/index"
+import { Col } from "reactstrap"
 
-const renderTextField = ({
-    input,
-    label,
-    type,
-    placeholder,
-    meta: { touched, error, warning },
-    custom,
-}) => (
-    <div>
-        <Label>{label}</Label>
-        <div>
-            <Input {...input} placeholder={placeholder} type={type} />
-            {touched &&
-                ((error && <span className="error">{error}</span>) ||
-                    (warning && <span>{warning}</span>))}
-        </div>
-    </div>
-)
 
-const onSubmit = (formProps) => {
-    console.log(formProps)
-}
 
 const SignUpPage = (props) => {
+
+    const onSubmit = (formProps) => {
+        console.log(formProps)
+    }
+
 
     const { handleSubmit } = props;
 
@@ -36,34 +22,36 @@ const SignUpPage = (props) => {
 
                 <h2>Sign Up</h2>
                 <p>Have an account?</p>
-                <div className="reduxcardcontainer">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div>
-                            <Field
-                                placeholder="username"
-                                name="username"
-                                type="text"
-                                component={renderTextField}
-                                validate={required}
-                            />
-                        </div>
-                        <div>
-                            <Field
-                                placeholder="Email"
-                                name="email"
-                                type="text"
-                                component={renderTextField}
-                                validate={[email, required]}
-                            />
-                        </div>
-                        <div>
-                            <Field
-                                placeholder="Password"
-                                name="password"
-                                type="password"
-                                component={renderTextField}
-                                validate={[required, minLength6, maxLength15]}
-                            />
+                <div classNameo="reduxcardcntainer">
+                    <Form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="signup-container">
+                            <Col xs={12} sm={5}>
+                                <Field
+                                    placeholder="username"
+                                    name="username"
+                                    type="text"
+                                    component={renderTextField}
+                                    validate={required}
+                                />
+                            </Col>
+                            <Col xs={12} sm={5}>
+                                <Field
+                                    placeholder="Email"
+                                    name="email"
+                                    type="text"
+                                    component={renderTextField}
+                                    validate={[emailValidate, required]}
+                                />
+                            </Col>
+                            <Col xs={12} sm={5}>
+                                <Field
+                                    placeholder="Password"
+                                    name="password"
+                                    type="password"
+                                    component={renderTextField}
+                                    validate={[required, minLength6, maxLength15]}
+                                />
+                            </Col>
                         </div>
                         <div className="button-container">
                             <div>
@@ -72,7 +60,7 @@ const SignUpPage = (props) => {
                                 </Button>
                             </div>
                         </div>
-                    </form>
+                    </Form>
 
                 </div>
             </div>

@@ -5,22 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import "./assets/scss/custome.scss"
-import { createStore, applyMiddleware, compose } from 'redux'
-import createSagaMiddleware from 'redux-saga';
-import { Provider } from 'react-redux';
-import allReducers from './redux/reducers';
-const sagaMiddleware = createSagaMiddleware();
-const composeEnhancers =
-  typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
 
-    }) : compose;
-
-const enhancer = composeEnhancers(
-  applyMiddleware(sagaMiddleware),
-);
-const store = createStore(allReducers, enhancer)
+import store from "./redux/store/index"
+import { Provider } from "react-redux"
 
 
 ReactDOM.render(
