@@ -2,8 +2,6 @@ import { Navbar, NavbarBrand, NavItem, NavLink, Collapse } from "reactstrap"
 
 import logo from "../assets/images/logo.jpg"
 
-// const image = "https://res.cloudinary.com/ddcycgbwg/image/upload/v1635920933/logo_agxsqh.jpg"
-//Header page
 const Header = () => {
 
     return (
