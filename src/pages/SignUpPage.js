@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Button, Label, Input } from "reactstrap";
-import { required, email, maxLength15, minLength6 } from "../redux/constants";
+import { required, email, maxLength15, minLength6 } from "../constants"
 
 const renderTextField = ({
     input,

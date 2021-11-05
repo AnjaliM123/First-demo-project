@@ -6,7 +6,6 @@ import Home from "./pages/index"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import SignUpPage from './pages/SignUpPage';
 
-//added a routing 
 
 function App() {
   return (
