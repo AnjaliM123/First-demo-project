@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Button, Label, Input } from "reactstrap";
-import { required, email } from "../redux/constants";
+import { required, email, maxLength15, minLength6 } from "../redux/constants";
 
 const renderTextField = ({
     input,
@@ -62,7 +62,7 @@ const SignUpPage = (props) => {
                                 name="password"
                                 type="password"
                                 component={renderTextField}
-                                validate={[required]}
+                                validate={[required, minLength6, maxLength15]}
                             />
                         </div>
                         <div className="button-container">

@@ -16,3 +16,16 @@ export const email = value =>
 
 
 export const select = value => (value ? undefined : "Required")
+
+
+
+
+
+const maxLength = max => value =>
+    value && value.length > max ? `Must be ${max} characters or less` : null
+export const maxLength15 = maxLength(15)
+
+const minLength = min => value =>
+    value && value < min ? `Must be at least ${min}` : null
+
+export const minLength6 = minLength(6)
