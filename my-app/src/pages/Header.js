@@ -1,4 +1,4 @@
-import { Navbar, NavbarBrand, NavItem, NavLink, Collapse } from "reactstrap"
+import { Navbar, NavbarBrand, NavLink } from "reactstrap"
 
 import logo from "../assets/images/logo.jpg"
 
@@ -7,7 +7,7 @@ import logo from "../assets/images/logo.jpg"
 const Header = () => {
 
     return (
-        <div className="container">
+        <div>
             <Navbar color="light" light expand="md" className="navbar">
                 <div>
                     <NavbarBrand href="/"><img src={logo} className="logo" alt="logo" /></NavbarBrand>
