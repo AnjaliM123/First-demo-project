@@ -5,7 +5,6 @@ import Header from "./pages/Header"
 import Home from "./pages/index"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
-//added a routing 
 
 function App() {
   return (
