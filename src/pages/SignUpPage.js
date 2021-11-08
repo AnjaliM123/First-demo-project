@@ -1,13 +1,13 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Button, Form } from "reactstrap";
-import { required, validateEmail, maxLength15, minLength6 } from "../constants/Validate"
-import { renderTextField } from "../common/ReduxFields"
+import { renderTextField } from "../common/ReduxFields";
+import { validateEmail, required, minLength6, maxLength15 } from "../constants/Validate";
 import { Link } from "react-router-dom"
 
 
 const SignUpPage = (props) => {
-
+    /*----------on form submit -----------*/
     const onSubmit = (formProps) => {
         console.log(formProps)
     }
@@ -23,18 +23,19 @@ const SignUpPage = (props) => {
 
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Field
+                    placeholder="Name"
+                    name="name"
+                    type="text"
+                    component={renderTextField}
+                    validate={[required]}
+
+                />
+                <Field
                     placeholder="Email"
                     name="email"
                     type="text"
                     component={renderTextField}
                     validate={[validateEmail, required]}
-                />
-                <Field
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    component={renderTextField}
-                    validate={[required]}
                 />
                 <Field
                     placeholder="Password"

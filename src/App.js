@@ -5,7 +5,7 @@ import Header from "./pages/Header"
 import Home from "./pages/index"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import SignUpPage from './pages/SignUpPage';
-import LoginPage from "./pages/LoginPage";
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
