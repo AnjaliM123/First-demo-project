@@ -6,8 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import "./assets/scss/custome.scss"
 
-import store from "./redux/store/index"
-import { Provider } from "react-redux"
+import store from "./redux/store"
+
 
 
 ReactDOM.render(
