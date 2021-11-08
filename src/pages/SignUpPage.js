@@ -23,18 +23,19 @@ const SignUpPage = (props) => {
 
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Field
+                    placeholder="Name"
+                    name="name"
+                    type="text"
+                    component={renderTextField}
+                    validate={[required]}
+
+                />
+                <Field
                     placeholder="Email"
                     name="email"
                     type="text"
                     component={renderTextField}
                     validate={[validateEmail, required]}
-                />
-                <Field
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    component={renderTextField}
-                    validate={[required]}
                 />
                 <Field
                     placeholder="Password"
