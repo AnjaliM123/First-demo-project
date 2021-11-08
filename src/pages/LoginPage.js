@@ -1,12 +1,12 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Button, Form } from "reactstrap";
-import { required, validateEmail, maxLength15, minLength6 } from "../constants"
+import { required, validateEmail } from "../constants"
 import { renderTextField } from "../common/Validate"
 import { Link } from "react-router-dom"
 
 
-const SignUpPage = (props) => {
+const LoginPage = (props) => {
 
     const onSubmit = (formProps) => {
         console.log(formProps)
@@ -18,9 +18,8 @@ const SignUpPage = (props) => {
     return (
 
         <div className="row col-12 col-sm-7 col-md-5 col-lg-4 d-flex flex-row justify-content-center m-auto pt-5">
-            <h2>Sign Up</h2>
-            <Link to="/login" className="link">Have an account?</Link>
-
+            <h2>Login</h2>
+            <Link to="/sign-up" className="link">Need an account?</Link>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Field
                     placeholder="Email"
@@ -36,16 +35,9 @@ const SignUpPage = (props) => {
                     component={renderTextField}
                     validate={[required]}
                 />
-                <Field
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    component={renderTextField}
-                    validate={[required, minLength6, maxLength15]}
-                />
                 <div className="d-flex flex-row justify-content-end mt-3">
                     <Button type="submit" className="button">
-                        Sign Up
+                        Login
                     </Button>
                 </div>
 
@@ -57,5 +49,5 @@ const SignUpPage = (props) => {
 }
 
 export default reduxForm({
-    form: "SignUpPage"
-})(SignUpPage)
+    form: "LoginPage"
+})(LoginPage)
