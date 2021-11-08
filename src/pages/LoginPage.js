@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 
 
 const LoginPage = (props) => {
-
+    /*----------on form submit -----------*/
     const onSubmit = (formProps) => {
         console.log(formProps)
     }
