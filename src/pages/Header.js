@@ -5,7 +5,7 @@ import logo from "../assets/images/logo.jpg"
 const Header = () => {
 
     return (
-        <div className="container">
+        <div>
             <Navbar color="light" light expand="md" className="navbar">
                 <div>
                     <NavbarBrand href="/"><img src={logo} className="logo" alt="logo" /></NavbarBrand>
@@ -15,7 +15,7 @@ const Header = () => {
                         <div>
                             <NavLink href="/login" className="nav-link">Login</NavLink>
                         </div><div>
-                            <NavLink href="/sign-=up" className="nav-link">Sign up</NavLink>
+                            <NavLink href="/sign-up" className="nav-link">Sign up</NavLink>
                         </div>
                     </div>
 
