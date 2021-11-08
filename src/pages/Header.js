@@ -2,7 +2,6 @@ import { Navbar, NavbarBrand, NavLink } from "reactstrap"
 
 import logo from "../assets/images/logo.jpg"
 
-
 const Header = () => {
 
     return (
