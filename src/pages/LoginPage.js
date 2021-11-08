@@ -1,8 +1,8 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Button, Form } from "reactstrap";
-import { required, validateEmail } from "../constants"
-import { renderTextField } from "../common/Validate"
+import { required, validateEmail } from "../constants/Validate"
+import { renderTextField } from "../common/ReduxField"
 import { Link } from "react-router-dom"
 
 
