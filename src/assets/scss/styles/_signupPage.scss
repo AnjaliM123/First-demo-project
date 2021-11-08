@@ -8,12 +8,13 @@
 
 .signup-button {
     margin-top: 10px;
-    background-color: green;
+    background-color:$green;
+    border-style: none;
     
 }
 
 .error {
-    color:red;
+    color:$red;
 }
 
 .signup-form {
@@ -49,4 +50,8 @@
     .signup-button {
         margin-right:373px;
     }
+}
+
+.link {
+    color: $green;
 }

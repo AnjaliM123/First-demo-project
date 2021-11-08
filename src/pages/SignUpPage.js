@@ -4,7 +4,7 @@ import { Button, Form } from "reactstrap";
 import { required, emailValidate, maxLength15, minLength6 } from "../constants"
 import { renderTextField } from "../common/index"
 import { Col } from "reactstrap"
-
+import { Link } from "react-router-dom"
 
 
 const SignUpPage = (props) => {
@@ -21,7 +21,7 @@ const SignUpPage = (props) => {
             <div className="signup-form">
 
                 <h2>Sign Up</h2>
-                <p>Have an account?</p>
+                <Link to="/login" className="link">Have an account?</Link>
                 <div classNameo="reduxcardcntainer">
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <div className="signup-container">
