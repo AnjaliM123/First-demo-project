@@ -8,10 +8,10 @@ export const createUser = (action) => ({
 
 export const createUserSuccess = (action) => ({
     type: SIGN_UP.CREATE_USERS_ACCOUNT_SUCCESS,
-    payload: action
+    response: action
 })
 
 export const createUserFailure = (action) => ({
     type: SIGN_UP.CREATE_USERS_ACCOUNT_FAILURE,
-    payload: action
+    error: action
 })

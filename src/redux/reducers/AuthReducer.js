@@ -1,6 +1,6 @@
 import { SIGN_UP } from "../actions/ActionTypes"
 
-const UsersReducer = (state, action) => {
+const AuthReducer = (state, action) => {
     if (typeof state == "undefined") {
         state = {
             isFetching: true,
@@ -14,7 +14,7 @@ const UsersReducer = (state, action) => {
             return {
                 isLoading: true,
                 ...state,
-                isFetching: true,
+
                 users: action.payload,
                 userCreated: false
             }
@@ -22,20 +22,20 @@ const UsersReducer = (state, action) => {
             return {
                 isLoading: false,
                 ...state,
-                isFetching: false,
-                users: action.payload,
+
+                users: action.response.data,
                 userCreated: true
             }
         case SIGN_UP.CREATE_USERS_ACCOUNT_FAILURE:
             return {
                 isLoading: false,
                 ...state,
-                isFetching: false,
-                users: action.payload,
+
+                users: action.error,
                 userCreated: false
             }
         default:
             return state
     }
 }
-export default UsersReducer
+export default AuthReducer
