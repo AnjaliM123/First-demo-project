@@ -16,28 +16,32 @@ const SignUpPage = (props) => {
     const history = useHistory()
     /*----------on form submit -----------*/
     const onSubmit = (formProps) => {
-        console.log(formProps)
+
         dispatch(createUser({ user: formProps }))
 
 
     }
     const nextProps = useSelector(
         (state) => ({
-            buttonLoading: state.users.isLoading,
-            newUser: state.users?.userCreated
+            isLoading: state.users.isLoading,
+            isUserCreated: state.users?.userCreated,
+            isEmailTaken: state.users && state.users.users?.response?.data?.errors?.email,
+            isUserNameTaken: state.users && state.users.users?.response?.data?.errors?.username
         }),
     );
+
+
     const FirstRef = useRef(true)
     useEffect(() => {
-        console.log("newUser", nextProps.newUser)
+
         if (FirstRef.current) {
             FirstRef.current = false
             return
         }
-        if (nextProps.newUser) {
+        if (nextProps.isUserCreated) {
             history.push("/login")
         }
-    }, [nextProps.newUser])
+    }, [nextProps.isUserCreated, history])
 
     const { handleSubmit } = props;
 
@@ -46,6 +50,13 @@ const SignUpPage = (props) => {
         <div className="row col-12 col-sm-7 col-md-5 col-lg-4 d-flex flex-row justify-content-center m-auto pt-5">
             <h2>Sign Up</h2>
             <Link to="/login" className="link">Have an account?</Link>
+
+            {nextProps.isUserCreated && <p className="description">you have created your account successfully</p>}
+
+
+            {nextProps.isEmailTaken && nextProps.isEmailTaken.length ? <p className="autherror">Email already taken</p> : ""}
+
+            {nextProps.isUserNameTaken && nextProps.isUserNameTaken.length ? <p className="autherror">username already taken</p> : ""}
 
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Field
@@ -75,7 +86,7 @@ const SignUpPage = (props) => {
                 <div className="d-flex flex-row justify-content-end mt-3">
                     <Button type="submit" className="button">
                         Sign Up
-                        {nextProps.buttonLoading && <Spinner style={{ width: '0.7rem', height: '0.7rem' }} type="grow" color="light" />
+                        {nextProps.isLoading && <Spinner color="success" size="sm" />
 
                         }
                     </Button>

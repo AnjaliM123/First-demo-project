@@ -16,9 +16,11 @@ h1 {
     margin: 0 0 10px;
   }
   .nav-link {
-      color:green;
+      color:$green;
   }
-
+.nav-link:visited {
+    color: $green;
+}
   .navlink-container {
       display:flex;
       flex-direction: row;

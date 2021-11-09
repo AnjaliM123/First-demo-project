@@ -1,4 +1,4 @@
-import { SIGN_UP } from "../actions/ActionTypes"
+import { AUTH } from "../actions/ActionTypes"
 
 const AuthReducer = (state, action) => {
     if (typeof state == "undefined") {
@@ -7,33 +7,54 @@ const AuthReducer = (state, action) => {
             data: [],
         };
     }
-    console.log(action)
+
     switch (action.type) {
 
-        case SIGN_UP.CREATE_USERS_ACCOUNT_REQUEST:
+        case AUTH.CREATE_USERS_ACCOUNT_REQUEST:
             return {
-                isLoading: true,
-                ...state,
 
+                ...state,
+                isLoading: true,
                 users: action.payload,
                 userCreated: false
             }
-        case SIGN_UP.CREATE_USERS_ACCOUNT_SUCCESS:
+        case AUTH.CREATE_USERS_ACCOUNT_SUCCESS:
             return {
-                isLoading: false,
-                ...state,
 
+                ...state,
+                isLoading: false,
                 users: action.response.data,
                 userCreated: true
             }
-        case SIGN_UP.CREATE_USERS_ACCOUNT_FAILURE:
+        case AUTH.CREATE_USERS_ACCOUNT_FAILURE:
             return {
-                isLoading: false,
-                ...state,
 
+                ...state,
+                isLoading: false,
                 users: action.error,
                 userCreated: false
             }
+        case AUTH.LOGIN_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                isAuthenticated: false,
+                loginData: action.payload,
+            };
+        case AUTH.LOGIN_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isAuthenticated: true,
+                loginData: action.response.data,
+            };
+        case AUTH.LOGIN_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                isAuthenticated: false,
+                loginData: action.error,
+            };
         default:
             return state
     }

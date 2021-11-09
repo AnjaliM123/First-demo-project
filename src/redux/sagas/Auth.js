@@ -1,13 +1,13 @@
 import { all } from 'redux-saga/effects'
-import { call, put, takeEvery, takeLatest } from "@redux-saga/core/effects";
+import { call, put, takeEvery, } from "@redux-saga/core/effects";
 import { fork } from 'redux-saga/effects'
 
 
-import { SIGN_UP } from '../actions/ActionTypes';
-import { SIGN_UP_API, } from "../actions/ApiEndPoint"
+import { AUTH } from '../actions/ActionTypes';
+import { SIGN_UP_API, LOGIN_API } from "../actions/ApiEndPoint"
 import { AXIOS_INSTANCE } from "../actions/ApiEndPoint"
 import { checkHttpStatus } from "../apiUtils"
-import { createUser, createUserSuccess } from "../actions/AuthAction"
+import { createUserSuccess, loginFailure, loginSuccess } from "../actions/AuthAction"
 import { createUserFailure } from '../actions/AuthAction';
 
 
@@ -19,11 +19,14 @@ function* signUp(action) {
 
 
         const response = yield call(checkHttpStatus, apiResponse)
-        console.log(response)
-        if (response.status) {
-            const responseData = { data: response.data, status: 200 }
+
+        if (!response.status) {
+            const responseData = { data: response, }
             yield put(createUserSuccess(responseData))
 
+        }
+        else {
+            yield put(createUserFailure(response))
         }
 
     } catch (err) {
@@ -32,13 +35,43 @@ function* signUp(action) {
 }
 
 function* signUpWatcher() {
-    yield takeEvery(SIGN_UP.CREATE_USERS_ACCOUNT_REQUEST, signUp);
+    yield takeEvery(AUTH.CREATE_USERS_ACCOUNT_REQUEST, signUp);
 }
+
+
+function* login(action) {
+
+    try {
+        const loginApiResponse = yield call(AXIOS_INSTANCE.post, LOGIN_API, action.payload);
+
+
+        const response = yield call(checkHttpStatus, loginApiResponse)
+
+        if (!response.status) {
+            const responseData = { data: response, }
+            yield put(loginSuccess(responseData))
+
+        }
+        else {
+            yield put(loginFailure(response))
+        }
+
+    } catch (err) {
+        yield put(loginFailure(err))
+    }
+}
+
+function* loginWatcher() {
+    yield takeEvery(AUTH.LOGIN_REQUEST, login);
+}
+
+
 
 
 export default function* AuthSaga() {
     yield all([
         fork(signUpWatcher),
+        fork(loginWatcher),
 
     ]);
 }
