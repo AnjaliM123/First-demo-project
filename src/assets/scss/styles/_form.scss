@@ -1,5 +1,5 @@
 .button {
-    background-color: $green;
+    background-color: $green !important;
     border-style: none;
 }
 
@@ -21,7 +21,9 @@
 }
 
 
-
+.autherror {
+    color:$red;
+}
 
 
 .button:hover {

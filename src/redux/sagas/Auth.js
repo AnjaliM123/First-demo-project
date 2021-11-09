@@ -3,7 +3,7 @@ import { call, put, takeEvery, takeLatest } from "@redux-saga/core/effects";
 import { fork } from 'redux-saga/effects'
 
 
-import { SIGN_UP } from '../actions/ActionTypes';
+import { AUTH } from "../actionTypes"
 import { SIGN_UP_API, } from "../actions/ApiEndPoint"
 import { AXIOS_INSTANCE } from "../actions/ApiEndPoint"
 import { checkHttpStatus } from "../apiUtils"
@@ -32,7 +32,7 @@ function* signUp(action) {
 }
 
 function* signUpWatcher() {
-    yield takeEvery(SIGN_UP.CREATE_USERS_ACCOUNT_REQUEST, signUp);
+    yield takeEvery(AUTH.CREATE_USERS_ACCOUNT_REQUEST, signUp);
 }
 
 
