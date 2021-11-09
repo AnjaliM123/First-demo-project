@@ -1,4 +1,4 @@
-import { AUTH } from "../actions/ActionTypes"
+import { AUTH } from "../actionTypes"
 
 const AuthReducer = (state, action) => {
     if (typeof state == "undefined") {

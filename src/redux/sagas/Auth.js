@@ -3,7 +3,7 @@ import { call, put, takeEvery, } from "@redux-saga/core/effects";
 import { fork } from 'redux-saga/effects'
 
 
-import { AUTH } from '../actions/ActionTypes';
+import { AUTH } from "../actionTypes"
 import { SIGN_UP_API, LOGIN_API } from "../actions/ApiEndPoint"
 import { AXIOS_INSTANCE } from "../actions/ApiEndPoint"
 import { checkHttpStatus } from "../apiUtils"

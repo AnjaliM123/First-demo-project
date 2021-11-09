@@ -1,5 +1,5 @@
 
-import { AUTH } from "./ActionTypes"
+import { AUTH } from "../actionTypes"
 
 export const createUser = (action) => ({
     type: AUTH.CREATE_USERS_ACCOUNT_REQUEST,
