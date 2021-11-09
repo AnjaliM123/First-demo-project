@@ -7,7 +7,24 @@
     color:$green;
     text-decoration: none;
 }
-
+.link:hover {
+    color: $green;
+}
 .error {
     color:$red;
+    position: absolute;
+    display: flex;
+}
+
+.input {
+    border-color: $red;
+}
+
+
+
+
+
+.button:hover {
+    background-color: $green;
+    border-style: none;
 }

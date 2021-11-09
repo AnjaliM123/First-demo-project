@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useRef, } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Button, Form } from "reactstrap";
 import { renderTextField } from "../common/ReduxFields";
 import { validateEmail, required, minLength6, maxLength15 } from "../constants/Validate";
 import { Link } from "react-router-dom"
-
-
+import { createUser } from "../redux/actions/UsersActions"
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react"
+import { checkHttpStatus } from "../redux/apiUtils"
+import { useHistory } from "react-router-dom"
 const SignUpPage = (props) => {
+    const dispatch = useDispatch()
+    const history = useHistory()
     /*----------on form submit -----------*/
     const onSubmit = (formProps) => {
         console.log(formProps)
+        dispatch(createUser({ user: formProps }))
+
+
     }
 
+    const signupState = useSelector(state => console.log("state", state))
 
     const { handleSubmit } = props;
 
@@ -23,8 +32,8 @@ const SignUpPage = (props) => {
 
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Field
-                    placeholder="Name"
-                    name="name"
+                    placeholder="username"
+                    name="username"
                     type="text"
                     component={renderTextField}
                     validate={[required]}
