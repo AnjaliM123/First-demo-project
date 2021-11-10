@@ -19,7 +19,6 @@ const LoginPage = (props) => {
     dispatch(login({ user: formProps }));
   };
 
-
   const nextProps = useSelector((state) => ({
     loading: state.users.loading,
     isAuthenticated: state.users?.isAuthenticated,
@@ -33,15 +32,13 @@ const LoginPage = (props) => {
       return;
     }
     if (nextProps.isAuthenticated) {
-     
       history.push("/");
       showSuccessMessage("you have loggedin successfully");
-     
     }
     reset();
   }, [nextProps.isAuthenticated, history]);
 
-  const { handleSubmit , reset} = props;
+  const { handleSubmit, reset } = props;
 
   return (
     <div className="row col-12 col-sm-7 col-md-5 col-lg-4 d-flex flex-row justify-content-center m-auto pt-5">
@@ -49,11 +46,7 @@ const LoginPage = (props) => {
       <Link to="/sign-up" className="link">
         Need an account?
       </Link>
-      {nextProps.isAuthenticated && nextProps.isAuthenticated ? (
-        <p className="description">you have loggedin successfully</p>
-      ) : (
-        ""
-      )}
+
       {nextProps.isUserAuthenticated && nextProps.isUserAuthenticated ? (
         <p className="autherror">invalid email or password</p>
       ) : (

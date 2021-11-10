@@ -18,24 +18,21 @@ import { Cookie } from "../constants";
 import { BiFace, BiLogOut } from "react-icons/bi";
 import { BsPencil } from "react-icons/bs";
 import { useHistory } from "react-router";
-import { isUserAuthenticated,handleLogoutRedirect } from "../redux/helper/authHelper";
+import {
+  isUserAuthenticated,
+  handleLogoutRedirect,
+} from "../redux/helper/authHelper";
 const Header = () => {
   const [isOpenDropDown, setIsOpenDropDown] = useState(false);
 
   const history = useHistory();
 
-  // const logout = () => {
-  //     cookies.remove("token", { path: "/" })
-  //     cookies.remove("username")
+  const username = Cookie.get("username");
 
-  // }
-  // const token = cookies.get("token")
-  const username = Cookie.get("username")
-
-  const Logout=()=> {
-    handleLogoutRedirect()
-    history.push("/")
-  }
+  const Logout = () => {
+    handleLogoutRedirect();
+    history.push("/");
+  };
 
   const toggle = () => {
     setIsOpenDropDown(!isOpenDropDown);
@@ -58,7 +55,7 @@ const Header = () => {
                     posts
                   </Link>
                 </div>
-                
+
                 <div>
                   <ButtonDropdown
                     className="dropdown"
@@ -66,7 +63,7 @@ const Header = () => {
                     isOpen={isOpenDropDown}
                   >
                     <DropdownToggle caret className="button-container">
-                    <BiFace className="icon" />
+                      <BiFace className="icon" />
                       {username}
                     </DropdownToggle>
                     <DropdownMenu>
