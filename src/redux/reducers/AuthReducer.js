@@ -31,7 +31,7 @@ const AuthReducer = (state, action) => {
 
                 ...state,
                 isLoading: false,
-                users: action.error,
+                errors: action.error && action.error.response.data,
                 userCreated: false
             }
         default:
