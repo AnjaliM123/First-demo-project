@@ -5,9 +5,10 @@ import { renderTextField } from "../common/ReduxFields";
 import { validateEmail, required } from "../constants/Validate";
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/actions/AuthAction";
+import { login } from "../redux/actions";
 import { useHistory } from "react-router-dom"
 import { Spinner } from "reactstrap";
+import showSuccessMessage from "../redux/helper/alerts"
 const LoginPage = (props) => {
     const history = useHistory()
     const dispatch = useDispatch()
@@ -36,6 +37,7 @@ const LoginPage = (props) => {
         if (nextProps.isAuthenticated) {
 
             history.push("/")
+            showSuccessMessage("you have loggedin successfully")
         }
     }, [nextProps.isAuthenticated, history])
 
@@ -66,7 +68,7 @@ const LoginPage = (props) => {
                 <div className="d-flex flex-row justify-content-end mt-3">
                     <Button type="submit" className="button">
                         Login
-                        {nextProps.loading && <Spinner color="success" size="sm" />}
+                        {nextProps.loading && <Spinner color="#fff" size="sm" />}
                     </Button>
                 </div>
 

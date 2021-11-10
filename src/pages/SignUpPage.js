@@ -4,12 +4,16 @@ import { Button, Form } from "reactstrap";
 import { renderTextField } from "../common/ReduxFields";
 import { validateEmail, required, minLength6, maxLength15 } from "../constants/Validate";
 import { Link } from "react-router-dom"
-import { createUser } from "../redux/actions/AuthAction"
+import { createUser } from "../redux/actions"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react"
 
 import { useHistory } from "react-router-dom"
 import { Spinner } from "reactstrap";
+import showSuccessMessage from "../redux/helper/alerts"
+
+
+
 
 const SignUpPage = (props) => {
     const dispatch = useDispatch()
@@ -23,12 +27,14 @@ const SignUpPage = (props) => {
     }
     const nextProps = useSelector(
         (state) => ({
-            isLoading: state.users.isLoading,
-            isUserCreated: state.users?.userCreated,
-            isEmailTaken: state.users && state.users.users?.response?.data?.errors?.email,
-            isUserNameTaken: state.users && state.users.users?.response?.data?.errors?.username
+            usersData: state.users,
+
+            isEmailTaken: state.users && state.users.errors?.email,
+            isUserNameTaken: state.users && state.users.errors?.username
+
         }),
     );
+
 
 
     const FirstRef = useRef(true)
@@ -38,10 +44,14 @@ const SignUpPage = (props) => {
             FirstRef.current = false
             return
         }
-        if (nextProps.isUserCreated) {
+        if (nextProps.usersData.userCreated) {
             history.push("/login")
+            showSuccessMessage("you have created your account successfully")
+
         }
-    }, [nextProps.isUserCreated, history])
+
+
+    }, [nextProps.usersData.userCreated, history])
 
     const { handleSubmit } = props;
 
@@ -51,12 +61,7 @@ const SignUpPage = (props) => {
             <h2>Sign Up</h2>
             <Link to="/login" className="link">Have an account?</Link>
 
-            {nextProps.isUserCreated && <p className="description">you have created your account successfully</p>}
 
-
-            {nextProps.isEmailTaken && nextProps.isEmailTaken.length ? <p className="autherror">Email already taken</p> : ""}
-
-            {nextProps.isUserNameTaken && nextProps.isUserNameTaken.length ? <p className="autherror">username already taken</p> : ""}
 
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Field
@@ -67,6 +72,7 @@ const SignUpPage = (props) => {
                     validate={[required]}
 
                 />
+                {nextProps.isUserNameTaken && nextProps.isUserNameTaken.length ? <p className="autherror">username already taken</p> : null}
                 <Field
                     placeholder="Email"
                     name="email"
@@ -74,6 +80,7 @@ const SignUpPage = (props) => {
                     component={renderTextField}
                     validate={[validateEmail, required]}
                 />
+                {nextProps.isEmailTaken && nextProps.isEmailTaken.length ? <p className="autherror">Email already taken</p> : null}
                 <Field
                     placeholder="Password"
                     name="password"
@@ -86,7 +93,7 @@ const SignUpPage = (props) => {
                 <div className="d-flex flex-row justify-content-end mt-3">
                     <Button type="submit" className="button">
                         Sign Up
-                        {nextProps.isLoading && <Spinner color="success" size="sm" />
+                        {nextProps.usersData.isLoading && <Spinner color="#fff" size="sm" />
 
                         }
                     </Button>

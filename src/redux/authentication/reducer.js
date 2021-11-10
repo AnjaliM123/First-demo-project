@@ -1,4 +1,4 @@
-import { AUTH } from "../actionTypes"
+import { AUTH } from "./actionTypes"
 
 const AuthReducer = (state, action) => {
     if (typeof state == "undefined") {
@@ -7,7 +7,7 @@ const AuthReducer = (state, action) => {
             data: [],
         };
     }
-
+    console.log(action)
     switch (action.type) {
 
         case AUTH.CREATE_USERS_ACCOUNT_REQUEST:
@@ -31,7 +31,7 @@ const AuthReducer = (state, action) => {
 
                 ...state,
                 isLoading: false,
-                users: action.error,
+                errors: action.error && action.error.response.data.errors,
                 userCreated: false
             }
         case AUTH.LOGIN_REQUEST:

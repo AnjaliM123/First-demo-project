@@ -3,12 +3,12 @@ import { call, put, takeEvery, } from "@redux-saga/core/effects";
 import { fork } from 'redux-saga/effects'
 
 
-import { AUTH } from "../actionTypes"
-import { SIGN_UP_API, LOGIN_API } from "../actions/ApiEndPoint"
-import { AXIOS_INSTANCE } from "../actions/ApiEndPoint"
+import { AUTH } from "./actionTypes"
+import { SIGN_UP_API, LOGIN_API } from "../apiEndPoints"
+import { AXIOS_INSTANCE } from "../apiEndPoints"
 import { checkHttpStatus } from "../apiUtils"
-import { createUserSuccess, loginFailure, loginSuccess } from "../actions/AuthAction"
-import { createUserFailure } from '../actions/AuthAction';
+import { createUserSuccess, loginFailure, loginSuccess, createUserFailure } from "./actions"
+// import { createUserFailure } from './actions';
 
 
 
