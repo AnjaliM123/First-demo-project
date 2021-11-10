@@ -20,7 +20,7 @@ import { BsPencil } from "react-icons/bs";
 import { useHistory } from "react-router";
 import { isUserAuthenticated,handleLogoutRedirect } from "../redux/helper/authHelper";
 const Header = () => {
-  const [modal, setModal] = useState(false);
+  const [isOpenDropDown, setIsOpenDropDown] = useState(false);
 
   const history = useHistory();
 
@@ -38,7 +38,7 @@ const Header = () => {
   }
 
   const toggle = () => {
-    setModal(!modal);
+    setIsOpenDropDown(!isOpenDropDown);
   };
 
   return (
@@ -63,7 +63,7 @@ const Header = () => {
                   <ButtonDropdown
                     className="dropdown"
                     toggle={toggle}
-                    isOpen={modal}
+                    isOpen={isOpenDropDown}
                   >
                     <DropdownToggle caret className="button-container">
                     <BiFace className="icon" />
