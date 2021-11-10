@@ -14,8 +14,8 @@ import { useState } from "react";
 const LoginPage = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [cardAnimaton, setCardAnimation] = useState("cardHidden");
-  const { handleSubmit, reset } = props;
+
+ 
   /*----------on form submit -----------*/
   const onSubmit = (formProps) => {
     dispatch(login({ user: formProps }));
@@ -30,9 +30,7 @@ const LoginPage = (props) => {
   }));
 
 
-  useEffect(() => {
-   
-  });
+
   
 
   const FirstRef = useRef(true);
@@ -50,7 +48,7 @@ const LoginPage = (props) => {
   
   }, [nextProps.isAuthenticated, history]);
 
-
+  const { handleSubmit, reset } = props;
 
   return (
     <div className="row col-12 col-sm-7 col-md-5 col-lg-4 d-flex flex-row justify-content-center m-auto pt-5">
