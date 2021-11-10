@@ -1,5 +1,5 @@
 import { all } from 'redux-saga/effects'
-import { call, put, takeEvery, takeLatest } from "@redux-saga/core/effects";
+import { call, put, takeEvery,  } from "@redux-saga/core/effects";
 import { fork } from 'redux-saga/effects'
 
 
@@ -7,7 +7,7 @@ import { AUTH } from "../actionTypes"
 import { SIGN_UP_API, } from "../actions/ApiEndPoint"
 import { AXIOS_INSTANCE } from "../actions/ApiEndPoint"
 import { checkHttpStatus } from "../apiUtils"
-import { createUser, createUserSuccess } from "../actions/AuthAction"
+import {  createUserSuccess } from "../actions/AuthAction"
 import { createUserFailure } from '../actions/AuthAction';
 
 
