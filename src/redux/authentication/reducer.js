@@ -53,7 +53,7 @@ const AuthReducer = (state, action) => {
                 ...state,
                 loading: false,
                 isAuthenticated: false,
-                loginData: action.error,
+                loginErrors: action.error&&action.error.response.data,
             };
         default:
             return state
