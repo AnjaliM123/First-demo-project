@@ -1,28 +1,115 @@
-import { Navbar, NavbarBrand, } from "reactstrap"
-import { Link } from "react-router-dom"
-import logo from "../assets/images/logo.jpg"
+import {
+  Navbar,
+  NavbarBrand,
+  Dropdown,
+  Button,
+  NavItem,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu,
+  ButtonDropdown,
+} from "reactstrap";
+import { NavDropdown } from "react-bootstrap";
+import React, { useState } from "react";
 
+import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.jpg";
+import { Cookie } from "../constants";
+import { BiFace, BiLogOut } from "react-icons/bi";
+import { BsPencil } from "react-icons/bs";
+import { useHistory } from "react-router";
+import { isUserAuthenticated,handleLogoutRedirect } from "../redux/helper/authHelper";
 const Header = () => {
+  const [modal, setModal] = useState(false);
 
-    return (
+  const history = useHistory();
+
+  // const logout = () => {
+  //     cookies.remove("token", { path: "/" })
+  //     cookies.remove("username")
+
+  // }
+  // const token = cookies.get("token")
+  const username = Cookie.get("username")
+
+  const Logout=()=> {
+    handleLogoutRedirect()
+    history.push("/")
+  }
+
+  const toggle = () => {
+    setModal(!modal);
+  };
+
+  return (
+    <React.Fragment>
+      {isUserAuthenticated() ? (
         <div>
-            <Navbar color="light" light expand="md" className="navbar">
+          <Navbar color="light" light expand="md" className="navbar">
+            <div>
+              <NavbarBrand href="/">
+                <img src={logo} className="logo" alt="logo" />
+              </NavbarBrand>
+            </div>
+            <div>
+              <div className="navlink-container">
                 <div>
-                    <NavbarBrand href="/"><img src={logo} className="logo" alt="logo" /></NavbarBrand>
+                  <Link to="/posts" className="nav-link">
+                    posts
+                  </Link>
+                </div>
+                
+                <div>
+                  <ButtonDropdown
+                    className="dropdown"
+                    toggle={toggle}
+                    isOpen={modal}
+                  >
+                    <DropdownToggle caret className="button-container">
+                    <BiFace className="icon" />
+                      {username}
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem className="navitem">
+                        <BsPencil className="icon" /> Edit Profile
+                      </DropdownItem>
+                      <DropdownItem className="navitem" onClick={Logout}>
+                        <BiLogOut className="icon" />
+                        Logout
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </ButtonDropdown>
+                </div>
+              </div>
+            </div>
+          </Navbar>
+        </div>
+      ) : (
+        <div>
+          <Navbar color="light" light expand="md" className="navbar">
+            <div>
+              <NavbarBrand href="/">
+                <img src={logo} className="logo" alt="logo" />
+              </NavbarBrand>
+            </div>
+            <div>
+              <div className="navlink-container">
+                <div>
+                  <Link to="/login" className="nav-link">
+                    Login
+                  </Link>
                 </div>
                 <div>
-                    <div className="navlink-container">
-                        <div>
-                            <Link to="/login" className="nav-link">Login</Link>
-                        </div><div>
-                            <Link to="/sign-up" className="nav-link">Sign up</Link>
-                        </div>
-                    </div>
-
+                  <Link to="/sign-up" className="nav-link">
+                    Sign up
+                  </Link>
                 </div>
-            </Navbar >
-
-        </div >
-    )
-}
-export default Header
+              </div>
+            </div>
+          </Navbar>
+        </div>
+      )}
+    </React.Fragment>
+  );
+};
+export default Header;
