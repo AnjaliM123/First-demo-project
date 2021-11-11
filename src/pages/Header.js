@@ -22,6 +22,7 @@ import {
   isUserAuthenticated,
   handleLogoutRedirect,
 } from "../redux/helper/authHelper";
+import { Redirect } from "react-router";
 const Header = () => {
   const [isOpenDropDown, setIsOpenDropDown] = useState(false);
 
@@ -40,72 +41,74 @@ const Header = () => {
 
   return (
     <React.Fragment>
-      {isUserAuthenticated() ? (
+    
         <div>
           <Navbar color="light" light expand="md" className="navbar">
+            
             <div>
               <NavbarBrand href="/">
                 <img src={logo} className="logo" alt="logo" />
               </NavbarBrand>
             </div>
             <div>
-              <div className="navlink-container">
-                <div>
-                  <Link to="/posts" className="nav-link">
-                    posts
-                  </Link>
-                </div>
+              {isUserAuthenticated() ?
+               <div className="navlink-container">
+               <div className="d-flex flex-row justify-content-end">
+                   <div>
+                     <Link to="/posts" className="nav-link">
+                       posts
+                     </Link>
+                   </div>
 
-                <div>
-                  <ButtonDropdown
-                    className="dropdown"
-                    toggle={toggle}
-                    isOpen={isOpenDropDown}
-                  >
-                    <DropdownToggle caret className="button-container">
-                      <BiFace className="icon" />
-                      {username}
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem className="navitem">
-                        <BsPencil className="icon" /> Edit Profile
-                      </DropdownItem>
-                      <DropdownItem className="navitem" onClick={Logout}>
-                        <BiLogOut className="icon" />
-                        Logout
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </ButtonDropdown>
-                </div>
-              </div>
+                   <div>
+                       <ButtonDropdown
+                         className="dropdown"
+                         toggle={toggle}
+                         isOpen={isOpenDropDown}
+                       >
+                         <DropdownToggle caret className="button-container">
+                           <BiFace className="icon" />
+                           {username}
+                         </DropdownToggle>
+                         <DropdownMenu>
+                           <DropdownItem className="navitem">
+                             <BsPencil className="icon" /> Edit Profile
+                           </DropdownItem>
+                           <DropdownItem className="navitem" onClick={Logout}>
+                             <BiLogOut className="icon" />
+                             Logout
+                           </DropdownItem>
+                         </DropdownMenu>
+                       </ButtonDropdown>
+                     </div>
+                 </div>
+             </div>: <div>
+                    <div className="navlink-container">
+                      {/* {isUserAuthenticated() ? <Redirect to="/" /> : */}
+                      <>
+                        <div>
+                          <Link to="/login" className="nav-link">
+                            Login
+                          </Link>
+                        </div>
+                        <div>
+                          <Link to="/sign-up" className="nav-link">
+                            Sign up
+                          </Link>
+                        </div>
+                      </>
+                    </div>
+                    </div>}
+                    
+                  
+          
+                  
+           
             </div>
-          </Navbar>
+            </Navbar>
+  
+    
         </div>
-      ) : (
-        <div>
-          <Navbar color="light" light expand="md" className="navbar">
-            <div>
-              <NavbarBrand href="/">
-                <img src={logo} className="logo" alt="logo" />
-              </NavbarBrand>
-            </div>
-            <div>
-              <div className="navlink-container">
-                <div>
-                  <Link to="/login" className="nav-link">
-                    Login
-                  </Link>
-                </div>
-                <div>
-                  <Link to="/sign-up" className="nav-link">
-                    Sign up
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </Navbar>
-        </div>
-      )}
     </React.Fragment>
   );
 };

@@ -28,7 +28,7 @@ function* signUp(action) {
     if (!response.status) {
       const responseData = { data: response };
       yield put(createUserSuccess(responseData));
-      yield call(handleLoginRedirect(responseData))
+      
     } else {
       yield put(createUserFailure(response));
     }
@@ -54,7 +54,7 @@ function* login(action) {
     if (!response.status) {
       const responseData = { data: response };
       yield put(loginSuccess(responseData));
-      yield call(handleLoginRedirect(responseData))
+      yield call(handleLoginRedirect, responseData)
     } else {
       yield put(loginFailure(response));
     }

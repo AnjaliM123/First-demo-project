@@ -16,6 +16,8 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import showSuccessMessage from "../redux/helper/alerts";
+import { isUserAuthenticated } from "../redux/helper/authHelper";
+import { Redirect } from "react-router";
 
 const SignUpPage = (props) => {
   const dispatch = useDispatch();
@@ -46,6 +48,8 @@ const SignUpPage = (props) => {
   const { handleSubmit } = props;
 
   return (
+    <>
+    {isUserAuthenticated() ? <Redirect to="/" /> :
     <div className="row col-12 col-sm-7 col-md-5 col-lg-4 d-flex flex-row justify-content-center m-auto pt-5">
       <h2>Sign Up</h2>
       <Link to="/login" className="link">
@@ -90,7 +94,8 @@ const SignUpPage = (props) => {
           </Button>
         </div>
       </Form>
-    </div>
+    </div>}
+    </>
   );
 };
 
