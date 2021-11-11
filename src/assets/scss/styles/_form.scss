@@ -1,13 +1,35 @@
 .button {
-    background-color: $green;
-    border-style: none;
+  background-color: $green !important;
+  border-style: none !important;
 }
 
 .link {
-    color:$green;
-    text-decoration: none;
+  color: $green;
+  text-decoration: none;
+}
+.link:hover {
+  color: $green;
+}
+.error {
+  color: $red;
+  position: absolute;
+  display: flex;
 }
 
-.error {
-    color:$red;
+.input {
+  border-color: $red;
+}
+
+.autherror {
+  color: $red;
+  display: flex;
+  position: absolute;
+}
+
+// .success {
+//     background-color:"success";
+
+// }
+.autherrorlogin {
+  color: $red;
 }

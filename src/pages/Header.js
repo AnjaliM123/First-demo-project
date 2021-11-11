@@ -1,5 +1,5 @@
-import { Navbar, NavbarBrand, NavLink } from "reactstrap"
-
+import { Navbar, NavbarBrand, } from "reactstrap"
+import { Link } from "react-router-dom"
 import logo from "../assets/images/logo.jpg"
 
 const Header = () => {
@@ -13,9 +13,9 @@ const Header = () => {
                 <div>
                     <div className="navlink-container">
                         <div>
-                            <NavLink href="/login" className="nav-link">Login</NavLink>
+                            <Link to="/login" className="nav-link">Login</Link>
                         </div><div>
-                            <NavLink href="/sign-up" className="nav-link">Sign up</NavLink>
+                            <Link to="/sign-up" className="nav-link">Sign up</Link>
                         </div>
                     </div>
 
