@@ -9,7 +9,7 @@ import { login } from "../redux/actions";
 import { useHistory } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import showSuccessMessage from "../redux/helper/alerts";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container } from "reactstrap";
 const LoginPage = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
