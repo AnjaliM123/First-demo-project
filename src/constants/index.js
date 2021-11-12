@@ -1,3 +1,2 @@
 import { Cookies } from "react-cookie";
-export const Cookie = new Cookies();
-
+export const COOKIE = new Cookies();

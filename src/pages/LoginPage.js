@@ -9,14 +9,18 @@ import { login } from "../redux/actions";
 
 import showSuccessMessage from "../redux/helper/alerts";
 import { isUserAuthenticated } from "../redux/helper/authHelper";
+
 const LoginPage = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
+
   /*----------on form submit -----------*/
   const onSubmit = (formProps) => {
     dispatch(login({ user: formProps }));
+    reset();
   };
 
+  /*-----------to handle response from api's-----------------*/
   const nextProps = useSelector((state) => ({
     loginData: state.users,
   }));
