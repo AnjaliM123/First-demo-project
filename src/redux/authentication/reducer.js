@@ -7,7 +7,7 @@ const AuthReducer = (state, action) => {
             data: [],
         };
     }
-    console.log(action)
+
     switch (action.type) {
 
         case AUTH.CREATE_USERS_ACCOUNT_REQUEST:
