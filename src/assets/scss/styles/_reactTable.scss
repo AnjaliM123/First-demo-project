@@ -1,0 +1,28 @@
+.float {
+  float: right;
+}
+
+.button-left {
+  float: left;
+  background-color: $green !important;
+  border-style: none;
+  margin-left: 10px;
+}
+
+.heading {
+  background-color: $green;
+  color: #fff;
+}
+
+.progress {
+  display: flex;
+  justify-content: center;
+}
+.gridbutton-left {
+  float: left;
+  background-color: #fff !important;
+  border-style: solid;
+  color: $green !important;
+  border-color: $green !important;
+  margin-left: 10px;
+}
