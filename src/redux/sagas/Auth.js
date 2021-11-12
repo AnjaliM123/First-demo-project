@@ -16,7 +16,6 @@ function* signUp(action) {
     );
 
     const response = yield call(checkHttpStatus, apiResponse);
-    console.log(response);
     if (response.status) {
       const responseData = { data: response.data, status: 200 };
       yield put(createUserSuccess(responseData));

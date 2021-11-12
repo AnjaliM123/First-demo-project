@@ -21,7 +21,6 @@ const SignUpPage = (props) => {
   const history = useHistory();
   /*----------on form submit -----------*/
   const onSubmit = (formProps) => {
-    console.log(formProps);
     dispatch(createUser({ user: formProps }));
   };
   /*-----------to handle response from api's-----------------*/
