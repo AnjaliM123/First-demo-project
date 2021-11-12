@@ -26,11 +26,11 @@
   position: absolute;
 }
 
-// .success {
-//     background-color:"success";
-
-// }
-
-.autherrorlogin {
+.autherror {
   color: $red;
+}
+
+.button:hover {
+  background-color: $green;
+  border-style: none;
 }
