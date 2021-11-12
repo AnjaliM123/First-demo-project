@@ -1,7 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
-import Card from "../Card/Card";
-import CardBody from "../Card/CardBody";
+
 import CardHeader from "../Card/CardHeader";
 import { Button } from "reactstrap";
 import ReactTable from ".././ReactTable/ReactTable";
@@ -27,12 +26,12 @@ function PostsList(props) {
   const dispatch = useDispatch();
 
   const [initialValues, setInitialValues] = useState({ title: "", body: "" });
-
+  /*-----------to handle response from api's-----------------*/
   const nextProps = useSelector((state) => ({
     postsData: state.posts,
   }));
 
-  const editAgentData = (rowData) => {
+  const editPostData = (rowData) => {
     setInitialValues({ title: rowData.title, body: rowData.body });
     updateToggle();
   };
@@ -51,18 +50,12 @@ function PostsList(props) {
     );
   }, [nextProps.postsData]);
 
-  console.log("data", data);
   useEffect(() => {
     dispatch(getPosts());
   }, []);
   const [listView, setListView] = useState(true);
   const handleListView = () => {
     setListView(!listView);
-  };
-  console.log(listView);
-
-  const onClickDelete = (id) => {
-    console.log(id);
   };
 
   return (
@@ -119,7 +112,7 @@ function PostsList(props) {
                               <AiOutlineEdit
                                 aria-label="Edit"
                                 onClick={(e) => {
-                                  editAgentData(row.row.original);
+                                  editPostData(row.row.original);
                                 }}
                               />
                               <AiOutlineDelete

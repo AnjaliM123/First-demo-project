@@ -2,11 +2,11 @@ import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { Modal, ModalHeader, ModalFooter, Button, Spinner } from "reactstrap";
 import { Field, reduxForm } from "redux-form";
-import useModal from "../common/useModal";
+
 import { renderTextField } from "../common/ReduxFields";
 import { required } from "../constants/Validate";
-import { useSelector } from "react-redux";
-import { createPostsRequest, editPostsRequest } from "../redux/posts/actions";
+
+import { createPostsRequest } from "../redux/posts/actions";
 const AddPostModal = (props) => {
   const history = useHistory();
   const { open, hide, handleSubmit, initialValues } = props;
@@ -14,14 +14,8 @@ const AddPostModal = (props) => {
 
   const dispatch = useDispatch();
 
-  const nextProps = useSelector((state) => ({
-    isLoading: state.posts && state.posts.isLoading,
-  }));
-
+  /*----------on form submit -----------*/
   const onSubmit = (formProps) => {
-    console.log("prop", props);
-    console.log(formProps);
-
     const formData = {
       title: formProps.title,
       body: formProps.body,
@@ -33,15 +27,18 @@ const AddPostModal = (props) => {
     }
   };
 
+/*-----------to handle response from api's-----------------*/
+  const nextProps = useSelector((state) => ({
+    isLoading: state.posts && state.posts.isLoading,
+  }));
+  
   return (
     <Modal isOpen={open} fade={false} toggle={hide}>
       <div className="container">
         <form onSubmit={handleSubmit(onSubmit)}>
-          {initialValues ? (
-            <ModalHeader toggle={hide}>Edit request</ModalHeader>
-          ) : (
-            <ModalHeader toggle={hide}>Add request</ModalHeader>
-          )}
+          <ModalHeader toggle={hide}>
+            {initialValues ? "Edit request" : "Add request"}
+          </ModalHeader>
 
           <Field
             name="title"
