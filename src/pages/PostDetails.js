@@ -17,7 +17,6 @@ const PostDetails = (props) => {
   }, []);
   /*-----------to handle response from api's-----------------*/
   const post = useSelector((state) => state.posts && state.posts.posts);
-  console.log("post", post);
 
   return (
     <>
