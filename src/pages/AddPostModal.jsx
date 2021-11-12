@@ -10,7 +10,7 @@ import { createPostsRequest } from "../redux/posts/actions";
 const AddPostModal = (props) => {
   const history = useHistory();
   const { open, hide, handleSubmit, initialValues } = props;
-  console.log(open);
+
 
   const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ const AddPostModal = (props) => {
   const nextProps = useSelector((state) => ({
     isLoading: state.posts && state.posts.isLoading,
   }));
-  
+
   return (
     <Modal isOpen={open} fade={false} toggle={hide}>
       <div className="container">
