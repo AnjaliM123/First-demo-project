@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Button, Container, Form } from "reactstrap";
+import { Button, Container, Form, Row, Col, Spinner } from "reactstrap";
 import { renderTextField } from "../common/ReduxFields";
 import {
   validateEmail,
@@ -8,15 +8,9 @@ import {
   minLength6,
   maxLength15,
 } from "../constants/Validate";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { createUser } from "../redux/actions/AuthAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-
-import { useHistory } from "react-router-dom";
-import { Spinner } from "reactstrap";
-
-import { Row, Col } from "reactstrap";
 
 const SignUpPage = (props) => {
   const dispatch = useDispatch();
@@ -27,12 +21,8 @@ const SignUpPage = (props) => {
     dispatch(createUser({ user: formProps }));
   };
   const nextProps = useSelector((state) => ({
-      usersData:state.users,
-
+    usersData: state.users,
   }));
-
-
-
 
   const FirstRef = useRef(true);
   useEffect(() => {
@@ -61,13 +51,15 @@ const SignUpPage = (props) => {
           </p>
         )}
 
-        {nextProps.usersData.errors && nextProps.usersData.errors.errors.email?.length ? (
+        {nextProps.usersData.errors &&
+        nextProps.usersData.errors.errors.email?.length ? (
           <p className="autherror">Email already taken</p>
         ) : (
           ""
         )}
 
-        {nextProps.usersData.errors && nextProps.usersData.errors.errors.username?.length ? (
+        {nextProps.usersData.errors &&
+        nextProps.usersData.errors.errors.username?.length ? (
           <p className="autherror">username already taken</p>
         ) : (
           ""
@@ -100,7 +92,9 @@ const SignUpPage = (props) => {
               <div className="d-flex flex-row justify-content-end mt-3">
                 <Button type="submit" className="button">
                   Sign Up
-                  {nextProps.usersData.isLoading && <Spinner color="#fff" size="sm" />}
+                  {nextProps.usersData.isLoading && (
+                    <Spinner color="#fff" size="sm" />
+                  )}
                 </Button>
               </div>
             </Col>

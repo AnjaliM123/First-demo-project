@@ -1,11 +1,11 @@
 
 import { all } from 'redux-saga/effects';
-import { createUser, } from "../actions/AuthAction"
-import AuthSaga from "./Auth";
+
+import AuthSaga from "../redux/authentication/saga";
 const allSagas = function* rootSaga() {
     yield all([
         AuthSaga(),
-        createUser(),
+
 
     ]);
 }

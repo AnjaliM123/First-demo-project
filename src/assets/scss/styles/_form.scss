@@ -1,32 +1,36 @@
 .button {
-    background-color: $green !important;
-    border-style: none;
+  background-color: $green !important;
+  border-style: none;
 }
 
 .link {
-    color:$green;
-    text-decoration: none;
+  color: $green;
+  text-decoration: none;
 }
 .link:hover {
-    color: $green;
+  color: $green;
 }
 .error {
-    color:$red;
-    position: absolute;
-    display: flex;
+  color: $red;
+  position: absolute;
+  display: flex;
 }
 
 .input {
-    border-color: $red;
+  border-color: $red;
 }
-
 
 .autherror {
-    color:$red;
+  color: $red;
+  display: flex;
+  position: absolute;
 }
 
+.autherror {
+  color: $red;
+}
 
 .button:hover {
-    background-color: $green;
-    border-style: none;
+  background-color: $green;
+  border-style: none;
 }
