@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Button, Form } from "reactstrap";
+import { Button, Form, Spinner } from "reactstrap";
 import { renderTextField } from "../common/ReduxFields";
 import {
   validateEmail,
@@ -8,13 +8,10 @@ import {
   minLength6,
   maxLength15,
 } from "../constants/Validate";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { createUser } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 
-import { useHistory } from "react-router-dom";
-import { Spinner } from "reactstrap";
 import showSuccessMessage from "../redux/helper/alerts";
 import { isUserAuthenticated } from "../redux/helper/authHelper";
 import { Redirect } from "react-router";
@@ -49,52 +46,55 @@ const SignUpPage = (props) => {
 
   return (
     <>
-    {isUserAuthenticated() ? <Redirect to="/" /> :
-    <div className="row col-12 col-sm-7 col-md-5 col-lg-4 d-flex flex-row justify-content-center m-auto pt-5">
-      <h2>Sign Up</h2>
-      <Link to="/login" className="link">
-        Have an account?
-      </Link>
+      {isUserAuthenticated() ? (
+        <Redirect to="/" />
+      ) : (
+        <div className="row col-12 col-sm-7 col-md-5 col-lg-4 d-flex flex-row justify-content-center m-auto pt-5">
+          <h2>Sign Up</h2>
+          <Link to="/login" className="link">
+            Have an account?
+          </Link>
 
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Field
-          placeholder="username"
-          name="username"
-          type="text"
-          component={renderTextField}
-          validate={[required]}
-        />
-        {nextProps.isUserNameTaken && nextProps.isUserNameTaken.length ? (
-          <p className="autherror">username already taken</p>
-        ) : null}
-        <Field
-          placeholder="Email"
-          name="email"
-          type="text"
-          component={renderTextField}
-          validate={[validateEmail, required]}
-        />
-        {nextProps.isEmailTaken && nextProps.isEmailTaken.length ? (
-          <p className="autherror">Email already taken</p>
-        ) : null}
-        <Field
-          placeholder="Password"
-          name="password"
-          type="password"
-          component={renderTextField}
-          validate={[required, minLength6, maxLength15]}
-        />
-
-        <div className="d-flex flex-row justify-content-end mt-3">
-          <Button type="submit" className="button">
-            Sign Up
-            {nextProps.usersData.isLoading && (
-              <Spinner color="#fff" size="sm" />
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <Field
+              placeholder="username"
+              name="username"
+              type="text"
+              component={renderTextField}
+              validate={[required]}
+            />
+            {nextProps.isUserNameTaken && nextProps.isUserNameTaken.length && (
+              <p className="autherror">username already taken</p>
             )}
-          </Button>
+            <Field
+              placeholder="Email"
+              name="email"
+              type="text"
+              component={renderTextField}
+              validate={[validateEmail, required]}
+            />
+            {nextProps.isEmailTaken && nextProps.isEmailTaken.length && (
+              <p className="autherror">Email already taken</p>
+            )}
+            <Field
+              placeholder="Password"
+              name="password"
+              type="password"
+              component={renderTextField}
+              validate={[required, minLength6, maxLength15]}
+            />
+
+            <div className="d-flex flex-row justify-content-end mt-3">
+              <Button type="submit" className="button">
+                Sign Up
+                {nextProps.usersData.isLoading && (
+                  <Spinner color="#fff" size="sm" />
+                )}
+              </Button>
+            </div>
+          </Form>
         </div>
-      </Form>
-    </div>}
+      )}
     </>
   );
 };

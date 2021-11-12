@@ -1,10 +1,9 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { FcViewDetails } from "react-icons/fc";
-import Card from "../Card/Card";
-import CardBody from "../Card/CardBody";
-import CardHeader from "../Card/CardHeader";
-import { Button } from "reactstrap";
+import Card from "../common/Card";
+
+import { Button, Row, CardHeader, Col } from "reactstrap";
 import ReactTable from ".././ReactTable/ReactTable";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +12,7 @@ import { getPosts } from "../redux/posts/actions";
 import useModal from "../common/useModal";
 import AddPostModal from "../pages/AddPostModal";
 import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 import { isUserAuthenticated } from "../redux/helper/authHelper";
 
 function PostsList(props) {
@@ -26,14 +26,15 @@ function PostsList(props) {
   const [data, setData] = useState([]);
 
   const dispatch = useDispatch();
-
+  const [listView, setListView] = useState(true);
+  const [gridView, setGridView] = useState(false);
   const [initialValues, setInitialValues] = useState({ title: "", body: "" });
 
   const nextProps = useSelector((state) => ({
     postsData: state.posts,
   }));
 
-  const editAgentData = (rowData) => {
+  const editPostData = (rowData) => {
     setInitialValues({ title: rowData.title, body: rowData.body });
     updateToggle();
   };
@@ -42,28 +43,26 @@ function PostsList(props) {
       nextProps.postsData.posts && nextProps.postsData.posts.length
         ? nextProps.postsData.posts.map((item) => {
             return {
-              id: item ? item.id : null,
+              id: item && item.id,
 
-              title: item ? item.title : null,
-              body: item ? item.body : null,
+              title: item && item.title,
+              body: item && item.body,
             };
           })
         : []
     );
   }, [nextProps.postsData]);
 
-  console.log("data", data);
   useEffect(() => {
     dispatch(getPosts());
   }, []);
-  const [listView, setListView] = useState(true);
+
   const handleListView = () => {
     setListView(!listView);
     setGridView(!gridView);
   };
   console.log(listView);
 
-  const [gridView, setGridView] = useState(false);
   const handleGridView = () => {
     setGridView(!gridView);
     setListView(!listView);
@@ -131,22 +130,21 @@ function PostsList(props) {
                             <div className="actions-center">
                               <AiOutlineEdit
                                 aria-label="Edit"
+                                className="icon"
                                 onClick={(e) => {
-                                  editAgentData(row.row.original);
+                                  editPostData(row.row.original);
                                 }}
                               />
                               <AiOutlineDelete
                                 aria-label="Delete"
+                                className="icon"
                                 onClick={() => {
                                   onClickDelete(row.row.original.id);
                                 }}
                               />
-                              <FcViewDetails
-                                aria-label="View"
-                                // onClick={() => {
-                                //   viewPostsData(row.row.original);
-                                // }}
-                              />
+                              <Link to={`/post-details?${row.row.original.id}`}>
+                                <FcViewDetails aria-label="View" />
+                              </Link>
                             </div>
                           );
                         },
@@ -158,13 +156,23 @@ function PostsList(props) {
               </>
             )}
             {gridView && (
-              <div>
-                <Card
-                  data={data}
-                  editAgentData={editAgentData}
-                  initialValues={initialValues}
-                />
-              </div>
+              <>
+                <>
+                  <Row>
+                    {data &&
+                      data.map((eachPost) => {
+                        return (
+                          <Col md={6}>
+                            <Card
+                              eachPost={eachPost}
+                              editPostData={editPostData}
+                            />
+                          </Col>
+                        );
+                      })}
+                  </Row>
+                </>
+              </>
             )}
           </>
         </div>

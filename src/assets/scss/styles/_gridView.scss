@@ -1,18 +1,21 @@
 .cardcontainer {
   background-color: $green;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  height: 30vh;
 }
 
-.container {
-  margin-left: 5px;
+.eachItem {
+  color: #fff;
 }
 
-.gridtitle {
-  width: 300px;
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0px !important;
+  margin-right: 0px !important;
+  margin-left: 0px !important;
 }
 
-.griditem {
-  flex-grow: 1;
+.eachItem {
+  display: flex;
 }
