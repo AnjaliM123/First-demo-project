@@ -1,5 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+import { FcViewDetails } from "react-icons/fc";
 import Card from "../Card/Card";
 import CardBody from "../Card/CardBody";
 import CardHeader from "../Card/CardHeader";
@@ -58,8 +59,15 @@ function PostsList(props) {
   const [listView, setListView] = useState(true);
   const handleListView = () => {
     setListView(!listView);
+    setGridView(!gridView);
   };
   console.log(listView);
+
+  const [gridView, setGridView] = useState(false);
+  const handleGridView = () => {
+    setGridView(!gridView);
+    setListView(!listView);
+  };
 
   const onClickDelete = (id) => {
     console.log(id);
@@ -74,7 +82,12 @@ function PostsList(props) {
               <Button className="button-left" onClick={() => handleListView()}>
                 List view
               </Button>
-              <Button className="gridbutton-left">Grid view</Button>
+              <Button
+                className="gridbutton-left"
+                onClick={() => handleGridView()}
+              >
+                Grid view
+              </Button>
               <Button className="float button" onClick={toggle}>
                 Add post
               </Button>
@@ -128,6 +141,12 @@ function PostsList(props) {
                                   onClickDelete(row.row.original.id);
                                 }}
                               />
+                              <FcViewDetails
+                                aria-label="View"
+                                // onClick={() => {
+                                //   viewPostsData(row.row.original);
+                                // }}
+                              />
                             </div>
                           );
                         },
@@ -137,6 +156,15 @@ function PostsList(props) {
                   />
                 </div>
               </>
+            )}
+            {gridView && (
+              <div>
+                <Card
+                  data={data}
+                  editAgentData={editAgentData}
+                  initialValues={initialValues}
+                />
+              </div>
             )}
           </>
         </div>

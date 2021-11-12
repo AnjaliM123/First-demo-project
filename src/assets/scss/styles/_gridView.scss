@@ -1,0 +1,18 @@
+.cardcontainer {
+  background-color: $green;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  height: 30vh;
+}
+
+.container {
+  margin-left: 5px;
+}
+
+.gridtitle {
+  width: 300px;
+}
+
+.griditem {
+  flex-grow: 1;
+}
